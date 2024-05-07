@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case 02</title>
+    <style>
+        body {
+            background-color: darkslategray;
+        }
+        section {
+            width: fit-content;
+            height: fit-content;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        .first-row {
+            width: 1000px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+        .second-row {
+            width: 1000px;
+            height: 60px;
+            border-top: 2px solid white;
+            border-bottom: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .third-row {
+            width: 1000px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+        }
+        .button-row {
+            width: 1000px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .first-row>div {
+            width: 150px;
+            height: 50px;
+        }
+        .second-row>div {
+            width: 150px;
+            height: 50px;
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+        .third-row>div {
+            width: 150px;
+            height: 50px;
+        }
+        #value1 {
+            background-color: red;
+        }
+        #value2 {
+            background-color: green;
+        }
+        #value3 {
+            background-color: blue;
+        }
+        #value4 {
+            background-color: yellow;
+        }
+        #value5 {
+            background-color: sandybrown;
+        }
+        #value6 {
+            background-color: #eb87fa;
+        }
+        button {
+            width: 200px;
+            height: 40px;
+            cursor: pointer;
+            margin-left: 2px;
+            margin-right: 2px;
+            color: black;
+        }
+        #start_btn {
+            background-color: #763280;
+        }
+        #stop_btn {
+            background-color: #c46354;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="first-row">
+            <div id="value1"></div>
+        </div>
+        <div class="second-row">
+            <div id="value2"></div>
+            <div id="value3"></div>
+            <div id="value4"></div>
+            <div id="value5"></div>
+        </div>
+        <div class="third-row">
+            <div id="value6"></div>
+        </div>
+        <div class="button-row">
+            <button id="start_btn" type="button">Start</button>
+            <button id="stop_btn" type="button">Stop</button>
+        </div>
+    </section>
+    <script src="assets/lib/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script>
+        var array = ["red","green","blue","yellow","sandybrown","#eb87fa"];
+        var myInterval = null;
+        function replaceValues() {
+            //change the array
+            let lastValue = array.pop();
+            array.unshift(lastValue);
+
+            // update the elements
+            $('#value1').css({background:array[0]});
+            $('#value2').css({background:array[1]});
+            $('#value3').css({background:array[2]});
+            $('#value4').css({background:array[3]});
+            $('#value5').css({background:array[4]});
+            $('#value6').css({background:array[5]});
+        }
+
+        $("#start_btn").on("click", ()=>{
+            myInterval = setInterval(replaceValues, 2000);
+        });
+
+        $("#stop_btn").on("click", ()=>{
+            clearInterval(myInterval);
+        });
+
+    </script>
+</body>
+</html>

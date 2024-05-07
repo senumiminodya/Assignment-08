@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>case 01</title>
+    <style>
+        section {
+            display: flex;
+            height: 600px;
+        }
+        .walking-area {
+            width: 1500px;
+            height: 500px;
+            display: flex;
+            position: relative;
+            top: 20vh;
+        }
+        .walking-area>div {
+            background-image: url("assets/walking man.gif");
+            width: 250px;
+            height: 300px;
+            background-size: cover;
+            position: relative;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .walking-area>div>div>span {
+            font-size: 30px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .house-area {
+            width: 400px;
+            height: 650px;
+            background-image: url("assets/bubble-gum-purple-house.png");
+            background-size: cover;
+            margin-left: 30px;
+            margin-top: -90px;
+        }
+        .btn-area {
+            height: 60px;
+        }
+        button {
+            width: 200px;
+            height: 40px;
+            cursor: pointer;
+            margin-top: 100px;
+        }
+        #start_btn {
+            background-color: green;
+        }
+        #stop_btn {
+            background-color: #eb87fa;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="walking-area">
+            <div>
+                <div><span id="value1">A</span></div>
+            </div>
+            <div>
+                <div><span id="value2">B</span></div>
+            </div>
+            <div>
+                <div><span id="value3">C</span></div>
+            </div>
+            <div>
+                <div><span id="value4">D</span></div>
+            </div>
+            <div>
+                <div><span id="value5">E</span></div>
+            </div>
+            <div>
+                <div><span id="value6">F</span></div>
+            </div>
+        </div>
+        <div class="house-area">
+            <div></div>
+        </div>
+    </section>
+    <div class="btn-area">
+        <button id="start_btn" type="button">Start</button>
+        <button id="stop_btn" type="button">Stop</button>
+    </div>
+    <script src="assets/lib/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script>
+        var array = ['A','B','C','D','E','F'];
+        var myInterval = null;
+        function replaceValues() {
+            //change the array
+            let lastValue = array.pop();
+            array.unshift(lastValue);
+
+            // update the elements
+            $("#value1").text(array[0]);
+            $("#value2").text(array[1]);
+            $("#value3").text(array[2]);
+            $("#value4").text(array[3]);
+            $("#value5").text(array[4]);
+            $("#value6").text(array[5]);
+        }
+
+        $("#start_btn").on("click", ()=>{
+            myInterval = setInterval(replaceValues, 2000);
+        });
+
+        $("#stop_btn").on("click", ()=>{
+            clearInterval(myInterval);
+        });
+    </script>
+</body>
+</html>
